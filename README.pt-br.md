@@ -72,7 +72,7 @@ Cada email diário contém até 15 itens em três seções:
 - **Python 3.13**
 - **feedparser** — leitura de RSS
 - **Anthropic Claude API** — Haiku para classificação, Sonnet para enriquecimento editorial
-- **schedule** — agendamento de execução diária
+- **GitHub Actions** — agendamento diário, sem servidor
 - **smtplib** — entrega via Gmail SMTP
 
 ---
@@ -99,8 +99,18 @@ pip install -r requirements.txt
 cp .env.example .env
 # Preencha suas credenciais no .env
 
-python main.py
+python main.py  # executa uma vez e encerra
 ```
+
+---
+
+## Deploy
+
+Este projeto roda automaticamente via **GitHub Actions** — sem necessidade de servidor.
+
+- Agendado diariamente às 08:00 horário de Brasília
+- Credenciais armazenadas como secrets do repositório GitHub
+- Pode ser disparado manualmente pela aba Actions no GitHub
 
 ---
 

@@ -1,0 +1,30 @@
+name: Lupa — Daily Newsletter
+
+on:
+  schedule:
+    - cron: '0 11 * * *'  # 08:00 horário de Brasília (UTC-3)
+  workflow_dispatch:        # permite rodar manualmente pelo GitHub
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Executar Lupa
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
+        run: python main.py

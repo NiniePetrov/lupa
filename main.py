@@ -1,5 +1,3 @@
-import schedule
-import time
 from collector.rss import coletar_rss
 from collector.hackernews import coletar_hackernews
 from collector.reddit import coletar_reddit
@@ -12,7 +10,6 @@ from mailer.sender import enviar_email
 def executar():
     """
     Pipeline completo do Lupa.
-    Roda uma vez por dia no horário agendado.
     """
     print("\n" + "="*50)
     print("LUPA — iniciando coleta")
@@ -47,19 +44,5 @@ def executar():
     print("="*50 + "\n")
 
 
-def main():
-    print("Lupa iniciado — aguardando horário agendado (08:00)")
-    
-    # Agendamento diário às 08:00
-    schedule.every().day.at("08:00").do(executar)
-
-    # Para testar imediatamente sem esperar o horário:
-    # executar()
-
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
-
-
 if __name__ == "__main__":
-    main()
+    executar()

@@ -72,7 +72,7 @@ Each daily email contains up to 15 items across three sections:
 - **Python 3.13**
 - **feedparser** — RSS parsing
 - **Anthropic Claude API** — Haiku for classification, Sonnet for editorial enrichment
-- **schedule** — daily execution scheduling
+- **GitHub Actions** — daily scheduling, no server required
 - **smtplib** — Gmail SMTP delivery
 
 ---
@@ -99,8 +99,18 @@ pip install -r requirements.txt
 cp .env.example .env
 # Fill in your credentials in .env
 
-python main.py
+python main.py  # executes once and exits
 ```
+
+---
+
+## Deploy
+
+This project runs automatically via **GitHub Actions** — no server required.
+
+- Scheduled daily at 08:00 BRT (UTC-3)
+- Credentials stored as GitHub repository secrets
+- Trigger manually anytime via the Actions tab on GitHub
 
 ---
 
