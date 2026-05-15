@@ -54,7 +54,7 @@ def main():
     schedule.every().day.at("08:00").do(executar)
 
     # Para testar imediatamente sem esperar o horário:
-    executar()
+    # executar()
 
     while True:
         schedule.run_pending()
