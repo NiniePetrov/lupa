@@ -6,7 +6,7 @@ from collector.reddit import coletar_reddit
 from filter.prefilter import aplicar_prefiltro
 from classifier.haiku import classificar_itens
 from classifier.sonnet import enriquecer_substack
-from email.sender import enviar_email
+from mailer.sender import enviar_email
 
 
 def executar():
@@ -54,7 +54,7 @@ def main():
     schedule.every().day.at("08:00").do(executar)
 
     # Para testar imediatamente sem esperar o horário:
-    # executar()
+    executar()
 
     while True:
         schedule.run_pending()

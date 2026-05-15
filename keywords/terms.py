@@ -27,6 +27,40 @@ C_TIER = [
     "introspective awareness",
 ]
 
+# Termos B-tier — alta frequência, bom sinal
+B_TIER = [
+    "sycophancy",
+    "alignment",
+    "hallucination",
+    "cognitive bias",
+    "theory of mind",
+    "reinforcement learning",
+    "RLHF",
+    "red teaming",
+    "jailbreak",
+    "emergent",
+    "reasoning model",
+    "chain-of-thought",
+    "scheming",
+    "deception",
+    "reward hacking",
+    "parasocial",
+    "anthropomorphism",
+    "human-AI",
+    "AI companion",
+    "epistemic",
+    "situational awareness",
+    "fine-tuning",
+    "instruction following",
+    "benchmark",
+    "evaluation",
+    "safety",
+    "welfare",
+    "consciousness",
+    "autonomous",
+    "agentic",
+]
+
 # Combinações multi-token — exigem co-ocorrência de dois termos
 MULTI_TOKEN = [
     ("scheming", "frontier"),

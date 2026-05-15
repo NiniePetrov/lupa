@@ -1,4 +1,4 @@
-from keywords.terms import C_TIER, MULTI_TOKEN
+from keywords.terms import C_TIER, MULTI_TOKEN, B_TIER
 
 
 def normalizar(texto):
@@ -25,6 +25,10 @@ def passou_filtro(item):
     for termo in C_TIER:
         if termo.lower() in texto:
             return True
+    # Verifica termos B-tier
+    for termo in B_TIER:
+        if termo.lower() in texto:
+            return True
 
     # Verifica combinações multi-token
     for termo_a, termo_b in MULTI_TOKEN:
@@ -49,5 +53,6 @@ def aplicar_prefiltro(itens):
     descartados = total - aprovados_count
 
     print(f"Pré-filtro: {total} itens recebidos → {aprovados_count} aprovados, {descartados} descartados")
+
 
     return aprovados
