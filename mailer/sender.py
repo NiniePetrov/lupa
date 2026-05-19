@@ -28,12 +28,8 @@ def montar_secao_substack(itens):
             <p style='color:#666;font-size:13px;margin:0 0 12px 0'>📡 {item['fonte']}</p>
             <p style='margin:0 0 12px 0'>{item.get('resumo_gerado', '')}</p>
             <div style='background:#fff;padding:12px;border-radius:4px;margin-top:8px'>
-                <p style='margin:0 0 6px 0;font-weight:bold;color:#4a9eed'>Diagnóstico editorial</p>
-                <p style='margin:0 0 12px 0;font-size:14px'>{item.get('diagnostico', '')}</p>
-                <p style='margin:0 0 6px 0;font-weight:bold;color:#4a9eed'>Conexão de registros</p>
-                <p style='margin:0 0 4px 0;font-size:13px'><strong>Técnico:</strong> {conexao.get('tecnico', '')}</p>
-                <p style='margin:0 0 4px 0;font-size:13px'><strong>Psicológico:</strong> {conexao.get('psicologico', '')}</p>
-                <p style='margin:0 0 0 0;font-size:13px'><strong>Filosófico:</strong> {conexao.get('filosofico', '')}</p>
+                {f"<p style='margin:0 0 6px 0;font-weight:bold;color:#4a9eed'>Diagnóstico editorial</p><p style='margin:0 0 12px 0;font-size:14px'>{item.get('diagnostico', '')}</p>" if item.get('diagnostico') else ''}
+                {f"<p style='margin:0 0 6px 0;font-weight:bold;color:#4a9eed'>Conexão de registros</p><p style='margin:0 0 4px 0;font-size:13px'><strong>Técnico:</strong> {conexao.get('tecnico', '')}</p><p style='margin:0 0 4px 0;font-size:13px'><strong>Psicológico:</strong> {conexao.get('psicologico', '')}</p><p style='margin:0 0 0 0;font-size:13px'><strong>Filosófico:</strong> {conexao.get('filosofico', '')}</p>" if conexao.get('tecnico') else ''}
             </div>
         </div>"""
     return html
@@ -44,11 +40,13 @@ def montar_secao_simples(itens, titulo, cor):
         return ""
     html = f"<h2 style='color:#1a1a2e;border-bottom:2px solid {cor};padding-bottom:8px'>{titulo}</h2>"
     for item in itens:
+        resumo = item.get('resumo_gerado', '').strip()
+        resumo_html = f"<p style='margin:0'>{resumo}</p>" if resumo else "<p style='margin:0;color:#999;font-size:13px;font-style:italic'>Resumo indisponível para este item.</p>"
         html += f"""
         <div style='margin-bottom:20px;padding:16px;background:#f8f9fa;border-left:4px solid {cor};border-radius:4px'>
             <h3 style='margin:0 0 8px 0'><a href='{item['url']}' style='color:#1a1a2e;text-decoration:none'>{item['titulo']}</a></h3>
             <p style='color:#666;font-size:13px;margin:0 0 10px 0'>📡 {item['fonte']}</p>
-            <p style='margin:0'>{item.get('resumo_gerado', '')}</p>
+            {resumo_html}
         </div>"""
     return html
 
